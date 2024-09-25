@@ -25,4 +25,5 @@ int main()
     std::cout<<"hello world"<<std::endl;
     MyTcpSocket::GetInstance();
     std::cout<<"end"<<std::endl;
+    int i = 0;
 }
