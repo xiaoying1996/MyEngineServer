@@ -12,6 +12,9 @@
 #include "MessageManager.h"
 #include "../MyMysql/MyMysql.h"
 #include "../tcp/MyTcpSocket.h"
+#include "../protobuf/MyEngineMessage.pb.h"
+
+using namespace LoginMessage;
 
 class HandleMessage
 {
@@ -21,7 +24,10 @@ public:
     static void deleteInstance();
 
     void Print();
+    void ProcessProtoData(MessageData data);
     bool Init();
+
+    void CheckNameRepeat(string name,bool &ret);
 
 private:
     HandleMessage();

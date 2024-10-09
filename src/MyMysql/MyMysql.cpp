@@ -29,7 +29,7 @@ void MyMysql::deleteInstance()
 
 MyMysql::MyMysql()
 {
-    Init();
+
 }
 
 MyMysql::~MyMysql()
@@ -37,210 +37,415 @@ MyMysql::~MyMysql()
     cout << "MyMysql Destroyed..." << endl;
 }
 
-void MyMysql::Print()
+string MyMysql::Init()
 {
-    cout << "address:" << this << endl;
+    mysql_init(&mysql);
+    if (mysql_real_connect(&mysql, "111.229.232.5", "root", "qwer12345678Cy", "hcl", 3306, NULL, 0) == NULL)
+    {
+        return mysql_error(&mysql);
+    }
+    return "success";
 }
 
-bool MyMysql::Init() {
-    cout << "MyMysql Initiating..." << endl;
-    conn_prt = mysql_init(NULL);  //初始化MYSQL句柄
-
-    if(!conn_prt)   //若初始化句柄失败
+bool MyMysql::InsertData(string tablename,vector<string> keys, vector<string> values)
+{
+    string sqlStr = "insert into " + tablename + "(";
+    for (int i = 0; i < keys.size() - 1; i++)
     {
-        printf("init mysql failed\n");
-        return false;
-    }else{
-        printf("init mysql success\n");
+        sqlStr += keys[i];
+        sqlStr += ",";
     }
+    sqlStr += keys[keys.size() - 1];
+    sqlStr += ")";
+    sqlStr += " values ";
+    sqlStr += "(";
+    for (int j = 0; j < values.size() - 1; j++)
+    {
+        sqlStr += "'";
+        sqlStr += values[j];
+        sqlStr += "'";
+        sqlStr += ",";
+    }
+    sqlStr += "'";
+    sqlStr += values[values.size() - 1];
+    sqlStr += "'";
+    sqlStr += ");";
+    cout << sqlStr << endl;
+    mysql_query(&mysql, "set names gbk");
+    mysql_query(&mysql,sqlStr.c_str());
+    string err = mysql_error(&mysql);
+    return true;
+}
 
-    std::string host = "127.0.0.1";
-    std::string user = "root";
-    std::string pwd = "qwer12345678Cy";
-    std::string db = "2048Data";
-    if (!mysql_real_connect(conn_prt, host.c_str(), user.c_str(), pwd.c_str(), db.c_str(), 0, NULL, CLIENT_MULTI_STATEMENTS)) {
-        std::cout << "mysql_real_connect err" << std::endl;
-        return 0;
-    }else{
-        printf("connect mysql success\n");
+bool MyMysql::SelectData(string tablename, vector<string> keys, map<string, vector<string>>& res)
+{
+    if (!keys.size())
+    {
+        return false;
+    }
+    string strSelect = "select ";
+    for (int i = 0; i < keys.size()-1; i++)
+    {
+        strSelect += keys[i];
+        strSelect += ",";
+    }
+    strSelect += keys[keys.size() - 1];
+    strSelect += " from ";
+    strSelect += tablename;
+    strSelect += ";";
+
+    mysql_query(&mysql, "set names gbk");
+    int iQueryRet = mysql_query(&mysql, strSelect.c_str());
+    cout << "iRet = " << iQueryRet << endl;
+    string err = mysql_error(&mysql);
+    cout << err << endl;
+    MYSQL_RES* pRes = mysql_store_result(&mysql);
+    if (nullptr != pRes)
+    {
+        int iRowCount = mysql_num_rows(pRes);
+        cout << "row count = " << iRowCount << endl;
+
+        int iColCount = mysql_num_fields(pRes);
+        cout << "col count = " << iColCount << endl;
+
+        MYSQL_FIELD* pField = nullptr;
+        vector<string> vctFields;
+        while (pField = mysql_fetch_field(pRes))
+        {
+            cout << pField->name << "\t";
+            vctFields.push_back(pField->name);
+        }
+
+        MYSQL_ROW pQueryRes;
+        int iCurRow = 0;
+        while (pQueryRes = mysql_fetch_row(pRes))
+        {
+            cout << "\nrow " << ++iCurRow << " :" << endl;
+            for (int i = 0; i < iColCount; ++i)
+            {
+                if (nullptr == pQueryRes[i])
+                {
+                    cout << vctFields[i] << " = " << "null" << endl;
+                    res[vctFields[i]].push_back("");
+                }
+                else
+                {
+                    cout << vctFields[i] << " = " << pQueryRes[i] << endl;
+                    res[vctFields[i]].push_back(pQueryRes[i]);
+                }
+            }
+        }
+
+        mysql_free_result(pRes);
     }
     return true;
 }
 
-/*
- * 据库对象对数据库进行查询
- * type 1.登录 2.注册 3.待定
- * tablename:待查询的数据库名称
- * keyname：需要查询的字段
- * resultStr：查询到的结果
- */
-void MyMysql::selectData(int type,std::string tablename,std::vector<std::string> keyname,std::vector<std::string> &resultStr)
+bool MyMysql::SelectDataBySort(string tablename, vector<string> keys, map<string, vector<string>>& res, string sortKey, bool t)
 {
-    if(!keyname.size())
+    if (!keys.size())
     {
-        resultStr.push_back("no key input");
-        return;
+        return false;
     }
-    std::string queryStr = "";
-    queryStr += "select ";
-    for(int i = 0;i<keyname.size()-1;i++)
+    string strSelect = "select ";
+    for (int i = 0; i < keys.size() - 1; i++)
     {
-        queryStr += keyname[i] ;
-        queryStr += ",";
+        strSelect += keys[i];
+        strSelect += ",";
     }
-    queryStr +=keyname[keyname.size()-1];
-    queryStr += " from ";
-    queryStr += tablename;
-    queryStr += ";";
-    std::cout<<"sql Do Select:" << queryStr<<endl;
-    m_sqlOperator_Mutex.lock();
+    strSelect += keys[keys.size() - 1];
+    strSelect += " from ";
+    strSelect += tablename;
+    strSelect += " order by ";
+    strSelect += sortKey;
+    if (!t)
+    {
+        strSelect += " desc";
+    }
+    strSelect += ";";
 
-    m_sqlOperator_Mutex.unlock();
-}
-
-/*
- * 据库对象对数据库进行查询
- * tablename:待查询的数据库名称
- * keyname：需要查询的字段
- * whereVal:where限制条件
- * resultStr：查询到的结果
- */
-void MyMysql::selectData(int type,std::string tablename,std::vector<std::string> keyname,std::string whereKey,std::string whereVal,std::vector<std::string> &resultStr)
-{
-    std::cout<<"enter do select with where"<<endl;
-    if(!keyname.size())
-    {
-        resultStr.push_back("no key input");
-        return;
-    }
-    std::string queryStr = "";
-    queryStr += "select ";
-    for(int i = 0;i<keyname.size()-1;i++)
-    {
-        queryStr += keyname[i] ;
-        queryStr += ",";
-    }
-    queryStr +=keyname[keyname.size()-1];
-    queryStr += " from ";
-    queryStr += tablename;
-    queryStr += " where " + whereKey + " = '" + whereVal + "'";
-
-    queryStr += ";";
-    std::cout<<"sql Do Select with where:" << queryStr<<endl;
-    m_sqlOperator_Mutex.lock();
-    int iQueryRet = mysql_query(conn_prt, queryStr.c_str());
+    mysql_query(&mysql, "set names gbk");
+    int iQueryRet = mysql_query(&mysql, strSelect.c_str());
     cout << "iRet = " << iQueryRet << endl;
-    if(iQueryRet ==0)
+    string err = mysql_error(&mysql);
+    cout << err << endl;
+    MYSQL_RES* pRes = mysql_store_result(&mysql);
+    if (nullptr != pRes)
     {
-        MYSQL_RES *pRes = mysql_store_result(conn_prt);
-        if(nullptr != pRes)
+        int iRowCount = mysql_num_rows(pRes);
+        cout << "row count = " << iRowCount << endl;
+
+        int iColCount = mysql_num_fields(pRes);
+        cout << "col count = " << iColCount << endl;
+
+        MYSQL_FIELD* pField = nullptr;
+        vector<string> vctFields;
+        while (pField = mysql_fetch_field(pRes))
         {
-            switch (type) {
-                case 1:
+            cout << pField->name << "\t";
+            vctFields.push_back(pField->name);
+        }
+
+        MYSQL_ROW pQueryRes;
+        int iCurRow = 0;
+        while (pQueryRes = mysql_fetch_row(pRes))
+        {
+            cout << "\nrow " << ++iCurRow << " :" << endl;
+            for (int i = 0; i < iColCount; ++i)
+            {
+                if (nullptr == pQueryRes[i])
                 {
-                    int iRowCount = mysql_num_rows(pRes);
-                    cout << "row count = " << iRowCount << endl;
-
-                    int iColCount = mysql_num_fields(pRes);
-                    cout << "col count = " << iColCount << endl;
-
-                    MYSQL_FIELD *pField = nullptr;
-                    vector<string> vctFields;
-                    while (pField = mysql_fetch_field(pRes) )
-                    {
-                        cout << pField->name << "\t";
-                        vctFields.push_back(pField->name);
-                    }
-
-                    MYSQL_ROW pQueryRes;
-                    int iCurRow = 0;
-                    while (pQueryRes = mysql_fetch_row(pRes) )
-                    {
-                        cout << "\nrow " << ++iCurRow << " :" << endl;
-                        for(int i = 0; i < iColCount; ++i)
-                        {
-                            if(nullptr == pQueryRes[i])
-                            {
-                                cout << vctFields[i] << " = " << "null" << endl;
-                            }
-                            else
-                            {
-                                cout << vctFields[i] << " = " << pQueryRes[i] << endl;
-                                resultStr.push_back(pQueryRes[i]);
-                            }
-                        }
-                    }
-                    mysql_free_result(pRes);
-                    break;
+                    cout << vctFields[i] << " = " << "null" << endl;
+                    res[vctFields[i]].push_back("");
                 }
-                case 2:
-                    int iRowCount = mysql_num_rows(pRes);
-                    cout << "row count = " << iRowCount << endl;
-                    mysql_free_result(pRes);
-                    if(iRowCount >=1)
-                    {
-                        //该用户名已注册
-                        resultStr.push_back("NAMEHASREGISTERED");
-                    }else{
-                        //未注册，进行注册
-                        cout << "进行注册"<< endl;
-                        resultStr.push_back("REGISTERSUCCESS");
-                    }
-                    break;
+                else
+                {
+                    cout << vctFields[i] << " = " << pQueryRes[i] << endl;
+                    res[vctFields[i]].push_back(pQueryRes[i]);
+                }
             }
         }
-    }else{
-        cout << "MYSQL RUN ERROR" << endl;
+
+        mysql_free_result(pRes);
     }
-    m_sqlOperator_Mutex.unlock();
+    return true;
 }
 
-/*
- * 对数据库进行插入操作
- * tablename 插入哪个表
- * mapData 插入的数据
- * 返回值 0.插入成功   1.插入的数据为空  9.数据写入数据库失败
- */
-int MyMysql::insertData(std::string tablename,map<std::string,std::string> mapData)
+bool MyMysql::SelectDataBySortAndOther(string tablename, vector<string> keys, map<string, vector<string>>& res, string sortKey, bool t, string other)
 {
-    //INSERT INTO t_student (name, age) VALUE ("xiaoming", 16);
-    if(!mapData.size())
+    if (!keys.size())
     {
-        return 1;
+        return false;
     }
-    std::string queryStr = "";
-    queryStr += "INSERT INTO ";
-    queryStr += tablename;
-    queryStr += "(";
-    int size = 1;
-    for(auto iter = mapData.begin();iter != mapData.end();iter++)
+    string strSelect = "select ";
+    for (int i = 0; i < keys.size() - 1; i++)
     {
-        queryStr += iter->first;
-        if(size != mapData.size())
-        {
-            queryStr += ",";
-            size++;
-        }
+        strSelect += keys[i];
+        strSelect += ",";
     }
-    queryStr += ") VALUE (";
-    size = 1;
-    for(auto iter = mapData.begin();iter != mapData.end();iter++)
+    strSelect += keys[keys.size() - 1];
+    strSelect += " from ";
+    strSelect += tablename;
+    strSelect += other;
+    strSelect += " order by ";
+    strSelect += sortKey;
+    if (!t)
     {
-        queryStr += "'";
-        queryStr += iter->second;
-        queryStr += "'";
-        if(size != mapData.size())
-        {
-            queryStr += ",";
-            size++;
-        }
+        strSelect += " desc ";
     }
-    queryStr += ");";
-    std::cout<<"sql do insert: "<< queryStr<<endl;
-    int iQueryRet = mysql_query(conn_prt, queryStr.c_str());
+    strSelect += ";";
+
+
+    mysql_query(&mysql, "set names gbk");
+    int iQueryRet = mysql_query(&mysql, strSelect.c_str());
     cout << "iRet = " << iQueryRet << endl;
-    if(iQueryRet ==0)
-        return 0;
-    else
-        return 9;
+    string err = mysql_error(&mysql);
+    cout << err << endl;
+    MYSQL_RES* pRes = mysql_store_result(&mysql);
+    if (nullptr != pRes)
+    {
+        int iRowCount = mysql_num_rows(pRes);
+        cout << "row count = " << iRowCount << endl;
+
+        int iColCount = mysql_num_fields(pRes);
+        cout << "col count = " << iColCount << endl;
+
+        MYSQL_FIELD* pField = nullptr;
+        vector<string> vctFields;
+        while (pField = mysql_fetch_field(pRes))
+        {
+            cout << pField->name << "\t";
+            vctFields.push_back(pField->name);
+        }
+
+        MYSQL_ROW pQueryRes;
+        int iCurRow = 0;
+        while (pQueryRes = mysql_fetch_row(pRes))
+        {
+            cout << "\nrow " << ++iCurRow << " :" << endl;
+            for (int i = 0; i < iColCount; ++i)
+            {
+                if (nullptr == pQueryRes[i])
+                {
+                    cout << vctFields[i] << " = " << "null" << endl;
+                    res[vctFields[i]].push_back("");
+                }
+                else
+                {
+                    cout << vctFields[i] << " = " << pQueryRes[i] << endl;
+                    res[vctFields[i]].push_back(pQueryRes[i]);
+                }
+            }
+        }
+
+        mysql_free_result(pRes);
+    }
+    return true;
+}
+
+bool MyMysql::SelectDataWithWhere(string tablename, vector<string> keys, map<string, vector<string>>& res, string whereKey, string whereValue)
+{
+    if (!keys.size())
+    {
+        return false;
+    }
+    string strSelect = "select ";
+    for (int i = 0; i < keys.size() - 1; i++)
+    {
+        strSelect += keys[i];
+        strSelect += ",";
+    }
+    strSelect += keys[keys.size() - 1];
+    strSelect += " from ";
+    strSelect += tablename;
+    strSelect += " where ";
+    strSelect += whereKey;
+    strSelect += " = '";
+    strSelect += whereValue;
+    strSelect += "'";
+    strSelect += ";";
+
+    mysql_query(&mysql, "set names gbk");
+    int iQueryRet = mysql_query(&mysql, strSelect.c_str());
+    cout << "iRet = " << iQueryRet << endl;
+    string err = mysql_error(&mysql);
+    cout << err << endl;
+    MYSQL_RES* pRes = mysql_store_result(&mysql);
+    if (nullptr != pRes)
+    {
+        int iRowCount = mysql_num_rows(pRes);
+        cout << "row count = " << iRowCount << endl;
+
+        int iColCount = mysql_num_fields(pRes);
+        cout << "col count = " << iColCount << endl;
+
+        MYSQL_FIELD* pField = nullptr;
+        vector<string> vctFields;
+        while (pField = mysql_fetch_field(pRes))
+        {
+            cout << pField->name << "\t";
+            vctFields.push_back(pField->name);
+        }
+
+        MYSQL_ROW pQueryRes;
+        int iCurRow = 0;
+        while (pQueryRes = mysql_fetch_row(pRes))
+        {
+            cout << "\nrow " << ++iCurRow << " :" << endl;
+            for (int i = 0; i < iColCount; ++i)
+            {
+                if (nullptr == pQueryRes[i])
+                {
+                    cout << vctFields[i] << " = " << "null" << endl;
+                }
+                else
+                {
+                    cout << vctFields[i] << " = " << pQueryRes[i] << endl;
+                    res[vctFields[i]].push_back(pQueryRes[i]);
+                }
+            }
+        }
+
+        mysql_free_result(pRes);
+    }
+    return true;
+}
+
+bool MyMysql::SelectDataForSingleList(string tablename, vector<string>& res, string strSQL)
+{
+    mysql_query(&mysql, "set names gbk");
+    int iQueryRet = mysql_query(&mysql, strSQL.c_str());
+    cout << "iRet = " << iQueryRet << endl;
+    string err = mysql_error(&mysql);
+    cout << err << endl;
+    MYSQL_RES* pRes = mysql_store_result(&mysql);
+    if (nullptr != pRes)
+    {
+        int iRowCount = mysql_num_rows(pRes);
+        cout << "row count = " << iRowCount << endl;
+
+        int iColCount = mysql_num_fields(pRes);
+        cout << "col count = " << iColCount << endl;
+
+        MYSQL_FIELD* pField = nullptr;
+        vector<string> vctFields;
+        while (pField = mysql_fetch_field(pRes))
+        {
+            cout << pField->name << "\t";
+            vctFields.push_back(pField->name);
+        }
+
+        MYSQL_ROW pQueryRes;
+        int iCurRow = 0;
+        while (pQueryRes = mysql_fetch_row(pRes))
+        {
+            cout << "\nrow " << ++iCurRow << " :" << endl;
+            for (int i = 0; i < iColCount; ++i)
+            {
+                if (nullptr == pQueryRes[i])
+                {
+                    cout << vctFields[i] << " = " << "null" << endl;
+                    res.push_back("");
+                }
+                else
+                {
+                    cout << vctFields[i] << " = " << pQueryRes[i] << endl;
+                    res.push_back(pQueryRes[i]);
+                }
+            }
+        }
+
+        mysql_free_result(pRes);
+    }
+    return true;
+}
+
+bool MyMysql::UpdateData(string tablename, map<string, string> vals, map<string, string> wheres)
+{
+    if (!vals.size())
+    {
+        return false;
+    }
+    string strUpdate = "update ";
+    strUpdate += tablename;
+    strUpdate += " set ";
+    if (vals.size() > 1)
+    {
+        for (auto iter = vals.begin(); iter != (vals.end()--); iter++)
+        {
+            strUpdate += iter->first;
+            strUpdate += " = '";
+            strUpdate += "'";
+            strUpdate += iter->second;
+            strUpdate += "', ";
+        }
+    }
+    
+    auto iter2 = (--vals.end());
+    strUpdate += iter2->first;
+    strUpdate += " = '";
+    strUpdate += iter2->second;
+    strUpdate += "'";
+
+    strUpdate += " where ";
+    for (auto iter3 = wheres.begin(); iter3 != (--wheres.end()); iter3++)
+    {
+        strUpdate += iter3->first;
+        strUpdate += " = ";
+        strUpdate += "'";
+        strUpdate += iter3->second;
+        strUpdate += "' ";
+        strUpdate += "and ";
+    }
+    auto iter4 = (--wheres.end());
+    strUpdate += iter4->first;
+    strUpdate += " = ";
+    strUpdate += "'";
+    strUpdate += iter4->second;
+    strUpdate += "'";
+    strUpdate += ";";
+    mysql_query(&mysql, "set names gbk");
+    mysql_query(&mysql, strUpdate.c_str());
+    string err = mysql_error(&mysql);
+    return true;
 }

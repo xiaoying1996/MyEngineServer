@@ -80,8 +80,11 @@ void MessageManager::Push_msgData_IN(int clientFd,std::string msg)
     m_msgData_IN_Mutex.unlock();
 }
 
-void MessageManager::Push_msgData_Out(int clientFd,std::string msg)
+void MessageManager::Push_msgData_Out(MessageData data)
 {
+    m_msgData_Out_Mutex.lock();
+    msgData_Out.push_back(data);
+    m_msgData_Out_Mutex.unlock();
 }
 
 //获取头部第一个数据，并将其抛弃

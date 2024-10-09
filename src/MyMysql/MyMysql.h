@@ -2,23 +2,26 @@
 
 #include <iostream>
 #include <mutex>
-#include <mysql/mysql.h>
+#include <string>
 #include <vector>
 #include <map>
+#include <mysql/mysql.h>
+#include<stdlib.h>
 using namespace std;
 
 class MyMysql
 {
 public:
     static MyMysql* GetInstance();
-
     static void deleteInstance();
-
-    void Print();
-    bool Init();
-    void selectData(int type,std::string tablename,std::vector<std::string> keyname,std::vector<std::string> &resultStr);
-    void selectData(int type,std::string tablename,std::vector<std::string> keyname,std::string whereKey,std::string whereVal,std::vector<std::string> &resultStr);
-    int insertData(std::string tablename,map<std::string,std::string> mapData);
+    string Init();
+    bool InsertData(string tablename,vector<string> keys,vector<string> values);
+    bool SelectData(string tablename, vector<string> keys,map<string,vector<string>> &res);
+    bool SelectDataBySort(string tablename, vector<string> keys, map<string, vector<string>>& res,string sortKey,bool t);//trueΪ����falseΪ����
+    bool SelectDataBySortAndOther(string tablename, vector<string> keys, map<string, vector<string>>& res, string sortKey, bool t,string other);//trueΪ����falseΪ����
+    bool SelectDataWithWhere(string tablename, vector<string> keys, map<string, vector<string>>& res,string whereKey,string whereValue);
+    bool SelectDataForSingleList(string tablename,vector<string> &res,string strSQL);
+    bool UpdateData(string tablename, map<string,string> vals, map<string,string> wheres);
 private:
     MyMysql();
     ~MyMysql();
@@ -26,11 +29,13 @@ private:
     MyMysql(const MyMysql& manager);
     const MyMysql& operator=(const MyMysql& manager);
 
-    MYSQL *conn_prt;     //创造一个MYSQL句柄
-
 private:
     static MyMysql* m_MyMysql;
     static mutex m_Mutex;
     static mutex m_sqlOperator_Mutex;
+
+    MYSQL mysql;    //һ�����ݿ�ṹ��  
+    MYSQL_RES* res; //һ��������ṹ��
+    MYSQL_ROW row; //char** ��ά���ݣ����һ������¼
 };
 

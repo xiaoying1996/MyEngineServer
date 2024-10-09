@@ -1,0 +1,29 @@
+syntax="proto3";
+package LoginMessage;
+
+enum MessageType
+{
+    NAME_REPEAT_CHECK  = 0; //检查用户名是否重复
+    NAME_REPEAT_REPOST = 1;     //回复用户名是否重复
+}
+
+message Name_Repeat_Check
+{
+    bytes name = 1;
+}
+
+message Name_Repeat_Repost
+{
+    bytes name = 1;
+    bool state = 2;
+}
+
+message MainMessage
+{
+    MessageType type = 1;
+    oneof content
+    {
+        Name_Repeat_Check content1 = 2;
+        Name_Repeat_Repost content2 = 3;
+    }
+};

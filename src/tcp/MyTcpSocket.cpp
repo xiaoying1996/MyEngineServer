@@ -29,6 +29,7 @@ void MyTcpSocket::deleteInstance()
 MyTcpSocket::MyTcpSocket()
 {
     Init();
+    //创建一个线程，用来处理返回给客户端的数据
 }
 
 MyTcpSocket::~MyTcpSocket()
@@ -112,6 +113,20 @@ void MyTcpSocket::SocketRunning()
 {
     while(1)
     {
+        //遍历MessageManager
+        while(1)
+        {
+            if(MessageManager::GetInstance()->msgData_Out_NotEmpty())
+            {
+                MessageData data = MessageManager::GetInstance()->Pop_msgData_OUT();
+                send(data.clientFd, data.datas[0].c_str(), data.datas[0].length(), 0);
+            }
+            else
+            {
+                break;
+            }
+        }
+
         cout<<"epoll running....."<<endl;
         // 调用一次, 检测一次
         int num = epoll_wait(epfd, evs, size, -1);

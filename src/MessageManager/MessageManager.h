@@ -23,7 +23,7 @@ public:
     bool msgData_IN_NotEmpty();
     bool msgData_Out_NotEmpty();
     void Push_msgData_IN(int clientFd,string msg);
-    void Push_msgData_Out(int clientFd,string msg);
+    void Push_msgData_Out(MessageData data);
     MessageData Pop_msgData_IN();
     MessageData Pop_msgData_OUT();
 
