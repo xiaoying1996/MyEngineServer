@@ -3,6 +3,18 @@
 MyTcpSocket* MyTcpSocket::m_MyTcpSocket = nullptr;
 mutex MyTcpSocket::m_Mutex;
 
+void *HandleOutMessage(void *)
+{
+    while(1)
+    {
+        if(MessageManager::GetInstance()->msgData_Out_NotEmpty()) {
+            MessageData data = MessageManager::GetInstance()->Pop_msgData_OUT();
+            send(data.clientFd, data.datas[0].c_str(), data.datas[0].length(), 0);
+        }
+        sleep(1);
+    }
+}
+
 MyTcpSocket* MyTcpSocket::GetInstance()
 {
     if (m_MyTcpSocket == nullptr)
@@ -28,8 +40,11 @@ void MyTcpSocket::deleteInstance()
 
 MyTcpSocket::MyTcpSocket()
 {
+    //创建一个线程，用来处理返回给客户端的数据S;
+    //创建一个线程处理需要发送给客户端的数据
+    pthread_t thread_HandleOutMessage;
+    pthread_create(&thread_HandleOutMessage, NULL, HandleOutMessage, NULL);
     Init();
-    //创建一个线程，用来处理返回给客户端的数据
 }
 
 MyTcpSocket::~MyTcpSocket()
@@ -101,33 +116,19 @@ bool MyTcpSocket::Init()
         exit(0);
     }
 
-
     epoll_event evs[1024];
     size = sizeof(evs) / sizeof(struct epoll_event);
     printf("epoll初始化成功\n");
     SocketRunning();
+
     return true;
+
 }
 
 void MyTcpSocket::SocketRunning()
 {
     while(1)
     {
-        //遍历MessageManager
-        while(1)
-        {
-            if(MessageManager::GetInstance()->msgData_Out_NotEmpty())
-            {
-                MessageData data = MessageManager::GetInstance()->Pop_msgData_OUT();
-                send(data.clientFd, data.datas[0].c_str(), data.datas[0].length(), 0);
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        cout<<"epoll running....."<<endl;
         // 调用一次, 检测一次
         int num = epoll_wait(epfd, evs, size, -1);
         printf("==== num: %d\n", num);

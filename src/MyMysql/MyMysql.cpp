@@ -42,6 +42,7 @@ string MyMysql::Init()
     mysql_init(&mysql);
     if (mysql_real_connect(&mysql, "111.229.232.5", "root", "qwer12345678Cy", "hcl", 3306, NULL, 0) == NULL)
     {
+        std::cout<<"Mysql err:"<<mysql_error(&mysql)<<endl;
         return mysql_error(&mysql);
     }
     return "success";

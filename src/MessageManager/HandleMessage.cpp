@@ -65,6 +65,7 @@ void HandleMessage::ProcessProtoData(MessageData data)
         protoMsg.ParseFromString(str);
         if(protoMsg.type() == MessageType::NAME_REPEAT_CHECK)//检查用户名是否重复
         {
+            std::cout<<"start Handle"<<endl;
             bool ret;
             Name_Repeat_Check content = protoMsg.content1();
             string name = content.name();
@@ -83,6 +84,7 @@ void HandleMessage::ProcessProtoData(MessageData data)
             m.Clear();
             data_Ret.datas.push_back(msgStr);
             MessageManager::GetInstance()->Push_msgData_Out(data_Ret);
+            std::cout<<"end Handle"<<endl;
         }
     }
 }

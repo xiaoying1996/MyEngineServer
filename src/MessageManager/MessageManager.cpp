@@ -63,7 +63,6 @@ bool MessageManager::msgData_Out_NotEmpty()
     m_msgData_Out_Mutex.lock();
     bool isEmpty = msgData_Out.size();
     m_msgData_Out_Mutex.unlock();
-    cout<<"---------------------------------------------"<<isEmpty<<msgData_Out.size()<<endl;
     return isEmpty;
 }
 
