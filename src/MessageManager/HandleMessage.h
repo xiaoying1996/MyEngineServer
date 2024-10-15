@@ -5,6 +5,7 @@
  * 如果有数据就进行处理
  */
 #include <iostream>
+#include <fstream>
 #include <mutex>
 #include <vector>
 #include <deque>
@@ -28,6 +29,8 @@ public:
     bool Init();
 
     void CheckNameRepeat(string name,bool &ret);
+    void CheckNumberRepeat(string number,bool &ret);
+    void CheckEmailRepeat(string email,bool &ret);
 
 private:
     HandleMessage();

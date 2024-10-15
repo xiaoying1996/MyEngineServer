@@ -39,7 +39,7 @@ namespace protobuf_MyEngineMessage_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[3];
+  static const ::google::protobuf::internal::ParseTable schema[7];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -47,6 +47,12 @@ struct TableStruct {
 void AddDescriptors();
 }  // namespace protobuf_MyEngineMessage_2eproto
 namespace LoginMessage {
+class Email_Repeat_Chexk;
+class Email_Repeat_ChexkDefaultTypeInternal;
+extern Email_Repeat_ChexkDefaultTypeInternal _Email_Repeat_Chexk_default_instance_;
+class Email_Repeat_Repost;
+class Email_Repeat_RepostDefaultTypeInternal;
+extern Email_Repeat_RepostDefaultTypeInternal _Email_Repeat_Repost_default_instance_;
 class MainMessage;
 class MainMessageDefaultTypeInternal;
 extern MainMessageDefaultTypeInternal _MainMessage_default_instance_;
@@ -56,12 +62,22 @@ extern Name_Repeat_CheckDefaultTypeInternal _Name_Repeat_Check_default_instance_
 class Name_Repeat_Repost;
 class Name_Repeat_RepostDefaultTypeInternal;
 extern Name_Repeat_RepostDefaultTypeInternal _Name_Repeat_Repost_default_instance_;
+class Number_Repeat_Chexk;
+class Number_Repeat_ChexkDefaultTypeInternal;
+extern Number_Repeat_ChexkDefaultTypeInternal _Number_Repeat_Chexk_default_instance_;
+class Number_Repeat_Repost;
+class Number_Repeat_RepostDefaultTypeInternal;
+extern Number_Repeat_RepostDefaultTypeInternal _Number_Repeat_Repost_default_instance_;
 }  // namespace LoginMessage
 namespace google {
 namespace protobuf {
+template<> ::LoginMessage::Email_Repeat_Chexk* Arena::CreateMaybeMessage<::LoginMessage::Email_Repeat_Chexk>(Arena*);
+template<> ::LoginMessage::Email_Repeat_Repost* Arena::CreateMaybeMessage<::LoginMessage::Email_Repeat_Repost>(Arena*);
 template<> ::LoginMessage::MainMessage* Arena::CreateMaybeMessage<::LoginMessage::MainMessage>(Arena*);
 template<> ::LoginMessage::Name_Repeat_Check* Arena::CreateMaybeMessage<::LoginMessage::Name_Repeat_Check>(Arena*);
 template<> ::LoginMessage::Name_Repeat_Repost* Arena::CreateMaybeMessage<::LoginMessage::Name_Repeat_Repost>(Arena*);
+template<> ::LoginMessage::Number_Repeat_Chexk* Arena::CreateMaybeMessage<::LoginMessage::Number_Repeat_Chexk>(Arena*);
+template<> ::LoginMessage::Number_Repeat_Repost* Arena::CreateMaybeMessage<::LoginMessage::Number_Repeat_Repost>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace LoginMessage {
@@ -69,12 +85,16 @@ namespace LoginMessage {
 enum MessageType {
   NAME_REPEAT_CHECK = 0,
   NAME_REPEAT_REPOST = 1,
+  NUMBER_REPEAT_CHECK = 2,
+  NUMBER_REPEAT_REPOST = 3,
+  EMAIL_REPEAT_CHECK = 4,
+  EMAIL_REPEAT_REPOST = 5,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool MessageType_IsValid(int value);
 const MessageType MessageType_MIN = NAME_REPEAT_CHECK;
-const MessageType MessageType_MAX = NAME_REPEAT_REPOST;
+const MessageType MessageType_MAX = EMAIL_REPEAT_REPOST;
 const int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* MessageType_descriptor();
@@ -318,6 +338,464 @@ class Name_Repeat_Repost : public ::google::protobuf::Message /* @@protoc_insert
 };
 // -------------------------------------------------------------------
 
+class Number_Repeat_Chexk : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LoginMessage.Number_Repeat_Chexk) */ {
+ public:
+  Number_Repeat_Chexk();
+  virtual ~Number_Repeat_Chexk();
+
+  Number_Repeat_Chexk(const Number_Repeat_Chexk& from);
+
+  inline Number_Repeat_Chexk& operator=(const Number_Repeat_Chexk& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Number_Repeat_Chexk(Number_Repeat_Chexk&& from) noexcept
+    : Number_Repeat_Chexk() {
+    *this = ::std::move(from);
+  }
+
+  inline Number_Repeat_Chexk& operator=(Number_Repeat_Chexk&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Number_Repeat_Chexk& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Number_Repeat_Chexk* internal_default_instance() {
+    return reinterpret_cast<const Number_Repeat_Chexk*>(
+               &_Number_Repeat_Chexk_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  void Swap(Number_Repeat_Chexk* other);
+  friend void swap(Number_Repeat_Chexk& a, Number_Repeat_Chexk& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Number_Repeat_Chexk* New() const final {
+    return CreateMaybeMessage<Number_Repeat_Chexk>(NULL);
+  }
+
+  Number_Repeat_Chexk* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Number_Repeat_Chexk>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Number_Repeat_Chexk& from);
+  void MergeFrom(const Number_Repeat_Chexk& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Number_Repeat_Chexk* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes number = 1;
+  void clear_number();
+  static const int kNumberFieldNumber = 1;
+  const ::std::string& number() const;
+  void set_number(const ::std::string& value);
+  #if LANG_CXX11
+  void set_number(::std::string&& value);
+  #endif
+  void set_number(const char* value);
+  void set_number(const void* value, size_t size);
+  ::std::string* mutable_number();
+  ::std::string* release_number();
+  void set_allocated_number(::std::string* number);
+
+  // @@protoc_insertion_point(class_scope:LoginMessage.Number_Repeat_Chexk)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr number_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_MyEngineMessage_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class Number_Repeat_Repost : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LoginMessage.Number_Repeat_Repost) */ {
+ public:
+  Number_Repeat_Repost();
+  virtual ~Number_Repeat_Repost();
+
+  Number_Repeat_Repost(const Number_Repeat_Repost& from);
+
+  inline Number_Repeat_Repost& operator=(const Number_Repeat_Repost& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Number_Repeat_Repost(Number_Repeat_Repost&& from) noexcept
+    : Number_Repeat_Repost() {
+    *this = ::std::move(from);
+  }
+
+  inline Number_Repeat_Repost& operator=(Number_Repeat_Repost&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Number_Repeat_Repost& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Number_Repeat_Repost* internal_default_instance() {
+    return reinterpret_cast<const Number_Repeat_Repost*>(
+               &_Number_Repeat_Repost_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  void Swap(Number_Repeat_Repost* other);
+  friend void swap(Number_Repeat_Repost& a, Number_Repeat_Repost& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Number_Repeat_Repost* New() const final {
+    return CreateMaybeMessage<Number_Repeat_Repost>(NULL);
+  }
+
+  Number_Repeat_Repost* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Number_Repeat_Repost>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Number_Repeat_Repost& from);
+  void MergeFrom(const Number_Repeat_Repost& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Number_Repeat_Repost* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes number = 1;
+  void clear_number();
+  static const int kNumberFieldNumber = 1;
+  const ::std::string& number() const;
+  void set_number(const ::std::string& value);
+  #if LANG_CXX11
+  void set_number(::std::string&& value);
+  #endif
+  void set_number(const char* value);
+  void set_number(const void* value, size_t size);
+  ::std::string* mutable_number();
+  ::std::string* release_number();
+  void set_allocated_number(::std::string* number);
+
+  // bool state = 2;
+  void clear_state();
+  static const int kStateFieldNumber = 2;
+  bool state() const;
+  void set_state(bool value);
+
+  // @@protoc_insertion_point(class_scope:LoginMessage.Number_Repeat_Repost)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr number_;
+  bool state_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_MyEngineMessage_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class Email_Repeat_Chexk : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LoginMessage.Email_Repeat_Chexk) */ {
+ public:
+  Email_Repeat_Chexk();
+  virtual ~Email_Repeat_Chexk();
+
+  Email_Repeat_Chexk(const Email_Repeat_Chexk& from);
+
+  inline Email_Repeat_Chexk& operator=(const Email_Repeat_Chexk& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Email_Repeat_Chexk(Email_Repeat_Chexk&& from) noexcept
+    : Email_Repeat_Chexk() {
+    *this = ::std::move(from);
+  }
+
+  inline Email_Repeat_Chexk& operator=(Email_Repeat_Chexk&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Email_Repeat_Chexk& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Email_Repeat_Chexk* internal_default_instance() {
+    return reinterpret_cast<const Email_Repeat_Chexk*>(
+               &_Email_Repeat_Chexk_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  void Swap(Email_Repeat_Chexk* other);
+  friend void swap(Email_Repeat_Chexk& a, Email_Repeat_Chexk& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Email_Repeat_Chexk* New() const final {
+    return CreateMaybeMessage<Email_Repeat_Chexk>(NULL);
+  }
+
+  Email_Repeat_Chexk* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Email_Repeat_Chexk>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Email_Repeat_Chexk& from);
+  void MergeFrom(const Email_Repeat_Chexk& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Email_Repeat_Chexk* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes email = 1;
+  void clear_email();
+  static const int kEmailFieldNumber = 1;
+  const ::std::string& email() const;
+  void set_email(const ::std::string& value);
+  #if LANG_CXX11
+  void set_email(::std::string&& value);
+  #endif
+  void set_email(const char* value);
+  void set_email(const void* value, size_t size);
+  ::std::string* mutable_email();
+  ::std::string* release_email();
+  void set_allocated_email(::std::string* email);
+
+  // @@protoc_insertion_point(class_scope:LoginMessage.Email_Repeat_Chexk)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr email_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_MyEngineMessage_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class Email_Repeat_Repost : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LoginMessage.Email_Repeat_Repost) */ {
+ public:
+  Email_Repeat_Repost();
+  virtual ~Email_Repeat_Repost();
+
+  Email_Repeat_Repost(const Email_Repeat_Repost& from);
+
+  inline Email_Repeat_Repost& operator=(const Email_Repeat_Repost& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Email_Repeat_Repost(Email_Repeat_Repost&& from) noexcept
+    : Email_Repeat_Repost() {
+    *this = ::std::move(from);
+  }
+
+  inline Email_Repeat_Repost& operator=(Email_Repeat_Repost&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Email_Repeat_Repost& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Email_Repeat_Repost* internal_default_instance() {
+    return reinterpret_cast<const Email_Repeat_Repost*>(
+               &_Email_Repeat_Repost_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  void Swap(Email_Repeat_Repost* other);
+  friend void swap(Email_Repeat_Repost& a, Email_Repeat_Repost& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Email_Repeat_Repost* New() const final {
+    return CreateMaybeMessage<Email_Repeat_Repost>(NULL);
+  }
+
+  Email_Repeat_Repost* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Email_Repeat_Repost>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Email_Repeat_Repost& from);
+  void MergeFrom(const Email_Repeat_Repost& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Email_Repeat_Repost* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes email = 1;
+  void clear_email();
+  static const int kEmailFieldNumber = 1;
+  const ::std::string& email() const;
+  void set_email(const ::std::string& value);
+  #if LANG_CXX11
+  void set_email(::std::string&& value);
+  #endif
+  void set_email(const char* value);
+  void set_email(const void* value, size_t size);
+  ::std::string* mutable_email();
+  ::std::string* release_email();
+  void set_allocated_email(::std::string* email);
+
+  // bool state = 2;
+  void clear_state();
+  static const int kStateFieldNumber = 2;
+  bool state() const;
+  void set_state(bool value);
+
+  // @@protoc_insertion_point(class_scope:LoginMessage.Email_Repeat_Repost)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr email_;
+  bool state_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_MyEngineMessage_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class MainMessage : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LoginMessage.MainMessage) */ {
  public:
   MainMessage();
@@ -350,6 +828,10 @@ class MainMessage : public ::google::protobuf::Message /* @@protoc_insertion_poi
   enum ContentCase {
     kContent1 = 2,
     kContent2 = 3,
+    kContent3 = 4,
+    kContent4 = 5,
+    kContent5 = 6,
+    kContent6 = 7,
     CONTENT_NOT_SET = 0,
   };
 
@@ -359,7 +841,7 @@ class MainMessage : public ::google::protobuf::Message /* @@protoc_insertion_poi
                &_MainMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    6;
 
   void Swap(MainMessage* other);
   friend void swap(MainMessage& a, MainMessage& b) {
@@ -441,12 +923,64 @@ class MainMessage : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::LoginMessage::Name_Repeat_Repost* mutable_content2();
   void set_allocated_content2(::LoginMessage::Name_Repeat_Repost* content2);
 
+  // .LoginMessage.Number_Repeat_Chexk content3 = 4;
+  bool has_content3() const;
+  void clear_content3();
+  static const int kContent3FieldNumber = 4;
+  private:
+  const ::LoginMessage::Number_Repeat_Chexk& _internal_content3() const;
+  public:
+  const ::LoginMessage::Number_Repeat_Chexk& content3() const;
+  ::LoginMessage::Number_Repeat_Chexk* release_content3();
+  ::LoginMessage::Number_Repeat_Chexk* mutable_content3();
+  void set_allocated_content3(::LoginMessage::Number_Repeat_Chexk* content3);
+
+  // .LoginMessage.Number_Repeat_Repost content4 = 5;
+  bool has_content4() const;
+  void clear_content4();
+  static const int kContent4FieldNumber = 5;
+  private:
+  const ::LoginMessage::Number_Repeat_Repost& _internal_content4() const;
+  public:
+  const ::LoginMessage::Number_Repeat_Repost& content4() const;
+  ::LoginMessage::Number_Repeat_Repost* release_content4();
+  ::LoginMessage::Number_Repeat_Repost* mutable_content4();
+  void set_allocated_content4(::LoginMessage::Number_Repeat_Repost* content4);
+
+  // .LoginMessage.Email_Repeat_Chexk content5 = 6;
+  bool has_content5() const;
+  void clear_content5();
+  static const int kContent5FieldNumber = 6;
+  private:
+  const ::LoginMessage::Email_Repeat_Chexk& _internal_content5() const;
+  public:
+  const ::LoginMessage::Email_Repeat_Chexk& content5() const;
+  ::LoginMessage::Email_Repeat_Chexk* release_content5();
+  ::LoginMessage::Email_Repeat_Chexk* mutable_content5();
+  void set_allocated_content5(::LoginMessage::Email_Repeat_Chexk* content5);
+
+  // .LoginMessage.Email_Repeat_Repost content6 = 7;
+  bool has_content6() const;
+  void clear_content6();
+  static const int kContent6FieldNumber = 7;
+  private:
+  const ::LoginMessage::Email_Repeat_Repost& _internal_content6() const;
+  public:
+  const ::LoginMessage::Email_Repeat_Repost& content6() const;
+  ::LoginMessage::Email_Repeat_Repost* release_content6();
+  ::LoginMessage::Email_Repeat_Repost* mutable_content6();
+  void set_allocated_content6(::LoginMessage::Email_Repeat_Repost* content6);
+
   void clear_content();
   ContentCase content_case() const;
   // @@protoc_insertion_point(class_scope:LoginMessage.MainMessage)
  private:
   void set_has_content1();
   void set_has_content2();
+  void set_has_content3();
+  void set_has_content4();
+  void set_has_content5();
+  void set_has_content6();
 
   inline bool has_content() const;
   inline void clear_has_content();
@@ -457,6 +991,10 @@ class MainMessage : public ::google::protobuf::Message /* @@protoc_insertion_poi
     ContentUnion() {}
     ::LoginMessage::Name_Repeat_Check* content1_;
     ::LoginMessage::Name_Repeat_Repost* content2_;
+    ::LoginMessage::Number_Repeat_Chexk* content3_;
+    ::LoginMessage::Number_Repeat_Repost* content4_;
+    ::LoginMessage::Email_Repeat_Chexk* content5_;
+    ::LoginMessage::Email_Repeat_Repost* content6_;
   } content_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -600,6 +1138,262 @@ inline void Name_Repeat_Repost::set_state(bool value) {
 
 // -------------------------------------------------------------------
 
+// Number_Repeat_Chexk
+
+// bytes number = 1;
+inline void Number_Repeat_Chexk::clear_number() {
+  number_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Number_Repeat_Chexk::number() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Number_Repeat_Chexk.number)
+  return number_.GetNoArena();
+}
+inline void Number_Repeat_Chexk::set_number(const ::std::string& value) {
+  
+  number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LoginMessage.Number_Repeat_Chexk.number)
+}
+#if LANG_CXX11
+inline void Number_Repeat_Chexk::set_number(::std::string&& value) {
+  
+  number_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LoginMessage.Number_Repeat_Chexk.number)
+}
+#endif
+inline void Number_Repeat_Chexk::set_number(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LoginMessage.Number_Repeat_Chexk.number)
+}
+inline void Number_Repeat_Chexk::set_number(const void* value, size_t size) {
+  
+  number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LoginMessage.Number_Repeat_Chexk.number)
+}
+inline ::std::string* Number_Repeat_Chexk::mutable_number() {
+  
+  // @@protoc_insertion_point(field_mutable:LoginMessage.Number_Repeat_Chexk.number)
+  return number_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Number_Repeat_Chexk::release_number() {
+  // @@protoc_insertion_point(field_release:LoginMessage.Number_Repeat_Chexk.number)
+  
+  return number_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Number_Repeat_Chexk::set_allocated_number(::std::string* number) {
+  if (number != NULL) {
+    
+  } else {
+    
+  }
+  number_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), number);
+  // @@protoc_insertion_point(field_set_allocated:LoginMessage.Number_Repeat_Chexk.number)
+}
+
+// -------------------------------------------------------------------
+
+// Number_Repeat_Repost
+
+// bytes number = 1;
+inline void Number_Repeat_Repost::clear_number() {
+  number_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Number_Repeat_Repost::number() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Number_Repeat_Repost.number)
+  return number_.GetNoArena();
+}
+inline void Number_Repeat_Repost::set_number(const ::std::string& value) {
+  
+  number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LoginMessage.Number_Repeat_Repost.number)
+}
+#if LANG_CXX11
+inline void Number_Repeat_Repost::set_number(::std::string&& value) {
+  
+  number_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LoginMessage.Number_Repeat_Repost.number)
+}
+#endif
+inline void Number_Repeat_Repost::set_number(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LoginMessage.Number_Repeat_Repost.number)
+}
+inline void Number_Repeat_Repost::set_number(const void* value, size_t size) {
+  
+  number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LoginMessage.Number_Repeat_Repost.number)
+}
+inline ::std::string* Number_Repeat_Repost::mutable_number() {
+  
+  // @@protoc_insertion_point(field_mutable:LoginMessage.Number_Repeat_Repost.number)
+  return number_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Number_Repeat_Repost::release_number() {
+  // @@protoc_insertion_point(field_release:LoginMessage.Number_Repeat_Repost.number)
+  
+  return number_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Number_Repeat_Repost::set_allocated_number(::std::string* number) {
+  if (number != NULL) {
+    
+  } else {
+    
+  }
+  number_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), number);
+  // @@protoc_insertion_point(field_set_allocated:LoginMessage.Number_Repeat_Repost.number)
+}
+
+// bool state = 2;
+inline void Number_Repeat_Repost::clear_state() {
+  state_ = false;
+}
+inline bool Number_Repeat_Repost::state() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Number_Repeat_Repost.state)
+  return state_;
+}
+inline void Number_Repeat_Repost::set_state(bool value) {
+  
+  state_ = value;
+  // @@protoc_insertion_point(field_set:LoginMessage.Number_Repeat_Repost.state)
+}
+
+// -------------------------------------------------------------------
+
+// Email_Repeat_Chexk
+
+// bytes email = 1;
+inline void Email_Repeat_Chexk::clear_email() {
+  email_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Email_Repeat_Chexk::email() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Email_Repeat_Chexk.email)
+  return email_.GetNoArena();
+}
+inline void Email_Repeat_Chexk::set_email(const ::std::string& value) {
+  
+  email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LoginMessage.Email_Repeat_Chexk.email)
+}
+#if LANG_CXX11
+inline void Email_Repeat_Chexk::set_email(::std::string&& value) {
+  
+  email_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LoginMessage.Email_Repeat_Chexk.email)
+}
+#endif
+inline void Email_Repeat_Chexk::set_email(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LoginMessage.Email_Repeat_Chexk.email)
+}
+inline void Email_Repeat_Chexk::set_email(const void* value, size_t size) {
+  
+  email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LoginMessage.Email_Repeat_Chexk.email)
+}
+inline ::std::string* Email_Repeat_Chexk::mutable_email() {
+  
+  // @@protoc_insertion_point(field_mutable:LoginMessage.Email_Repeat_Chexk.email)
+  return email_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Email_Repeat_Chexk::release_email() {
+  // @@protoc_insertion_point(field_release:LoginMessage.Email_Repeat_Chexk.email)
+  
+  return email_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Email_Repeat_Chexk::set_allocated_email(::std::string* email) {
+  if (email != NULL) {
+    
+  } else {
+    
+  }
+  email_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), email);
+  // @@protoc_insertion_point(field_set_allocated:LoginMessage.Email_Repeat_Chexk.email)
+}
+
+// -------------------------------------------------------------------
+
+// Email_Repeat_Repost
+
+// bytes email = 1;
+inline void Email_Repeat_Repost::clear_email() {
+  email_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Email_Repeat_Repost::email() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Email_Repeat_Repost.email)
+  return email_.GetNoArena();
+}
+inline void Email_Repeat_Repost::set_email(const ::std::string& value) {
+  
+  email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LoginMessage.Email_Repeat_Repost.email)
+}
+#if LANG_CXX11
+inline void Email_Repeat_Repost::set_email(::std::string&& value) {
+  
+  email_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LoginMessage.Email_Repeat_Repost.email)
+}
+#endif
+inline void Email_Repeat_Repost::set_email(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LoginMessage.Email_Repeat_Repost.email)
+}
+inline void Email_Repeat_Repost::set_email(const void* value, size_t size) {
+  
+  email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LoginMessage.Email_Repeat_Repost.email)
+}
+inline ::std::string* Email_Repeat_Repost::mutable_email() {
+  
+  // @@protoc_insertion_point(field_mutable:LoginMessage.Email_Repeat_Repost.email)
+  return email_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Email_Repeat_Repost::release_email() {
+  // @@protoc_insertion_point(field_release:LoginMessage.Email_Repeat_Repost.email)
+  
+  return email_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Email_Repeat_Repost::set_allocated_email(::std::string* email) {
+  if (email != NULL) {
+    
+  } else {
+    
+  }
+  email_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), email);
+  // @@protoc_insertion_point(field_set_allocated:LoginMessage.Email_Repeat_Repost.email)
+}
+
+// bool state = 2;
+inline void Email_Repeat_Repost::clear_state() {
+  state_ = false;
+}
+inline bool Email_Repeat_Repost::state() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Email_Repeat_Repost.state)
+  return state_;
+}
+inline void Email_Repeat_Repost::set_state(bool value) {
+  
+  state_ = value;
+  // @@protoc_insertion_point(field_set:LoginMessage.Email_Repeat_Repost.state)
+}
+
+// -------------------------------------------------------------------
+
 // MainMessage
 
 // .LoginMessage.MessageType type = 1;
@@ -704,6 +1498,182 @@ inline ::LoginMessage::Name_Repeat_Repost* MainMessage::mutable_content2() {
   return content_.content2_;
 }
 
+// .LoginMessage.Number_Repeat_Chexk content3 = 4;
+inline bool MainMessage::has_content3() const {
+  return content_case() == kContent3;
+}
+inline void MainMessage::set_has_content3() {
+  _oneof_case_[0] = kContent3;
+}
+inline void MainMessage::clear_content3() {
+  if (has_content3()) {
+    delete content_.content3_;
+    clear_has_content();
+  }
+}
+inline const ::LoginMessage::Number_Repeat_Chexk& MainMessage::_internal_content3() const {
+  return *content_.content3_;
+}
+inline ::LoginMessage::Number_Repeat_Chexk* MainMessage::release_content3() {
+  // @@protoc_insertion_point(field_release:LoginMessage.MainMessage.content3)
+  if (has_content3()) {
+    clear_has_content();
+      ::LoginMessage::Number_Repeat_Chexk* temp = content_.content3_;
+    content_.content3_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::LoginMessage::Number_Repeat_Chexk& MainMessage::content3() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.MainMessage.content3)
+  return has_content3()
+      ? *content_.content3_
+      : *reinterpret_cast< ::LoginMessage::Number_Repeat_Chexk*>(&::LoginMessage::_Number_Repeat_Chexk_default_instance_);
+}
+inline ::LoginMessage::Number_Repeat_Chexk* MainMessage::mutable_content3() {
+  if (!has_content3()) {
+    clear_content();
+    set_has_content3();
+    content_.content3_ = CreateMaybeMessage< ::LoginMessage::Number_Repeat_Chexk >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:LoginMessage.MainMessage.content3)
+  return content_.content3_;
+}
+
+// .LoginMessage.Number_Repeat_Repost content4 = 5;
+inline bool MainMessage::has_content4() const {
+  return content_case() == kContent4;
+}
+inline void MainMessage::set_has_content4() {
+  _oneof_case_[0] = kContent4;
+}
+inline void MainMessage::clear_content4() {
+  if (has_content4()) {
+    delete content_.content4_;
+    clear_has_content();
+  }
+}
+inline const ::LoginMessage::Number_Repeat_Repost& MainMessage::_internal_content4() const {
+  return *content_.content4_;
+}
+inline ::LoginMessage::Number_Repeat_Repost* MainMessage::release_content4() {
+  // @@protoc_insertion_point(field_release:LoginMessage.MainMessage.content4)
+  if (has_content4()) {
+    clear_has_content();
+      ::LoginMessage::Number_Repeat_Repost* temp = content_.content4_;
+    content_.content4_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::LoginMessage::Number_Repeat_Repost& MainMessage::content4() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.MainMessage.content4)
+  return has_content4()
+      ? *content_.content4_
+      : *reinterpret_cast< ::LoginMessage::Number_Repeat_Repost*>(&::LoginMessage::_Number_Repeat_Repost_default_instance_);
+}
+inline ::LoginMessage::Number_Repeat_Repost* MainMessage::mutable_content4() {
+  if (!has_content4()) {
+    clear_content();
+    set_has_content4();
+    content_.content4_ = CreateMaybeMessage< ::LoginMessage::Number_Repeat_Repost >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:LoginMessage.MainMessage.content4)
+  return content_.content4_;
+}
+
+// .LoginMessage.Email_Repeat_Chexk content5 = 6;
+inline bool MainMessage::has_content5() const {
+  return content_case() == kContent5;
+}
+inline void MainMessage::set_has_content5() {
+  _oneof_case_[0] = kContent5;
+}
+inline void MainMessage::clear_content5() {
+  if (has_content5()) {
+    delete content_.content5_;
+    clear_has_content();
+  }
+}
+inline const ::LoginMessage::Email_Repeat_Chexk& MainMessage::_internal_content5() const {
+  return *content_.content5_;
+}
+inline ::LoginMessage::Email_Repeat_Chexk* MainMessage::release_content5() {
+  // @@protoc_insertion_point(field_release:LoginMessage.MainMessage.content5)
+  if (has_content5()) {
+    clear_has_content();
+      ::LoginMessage::Email_Repeat_Chexk* temp = content_.content5_;
+    content_.content5_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::LoginMessage::Email_Repeat_Chexk& MainMessage::content5() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.MainMessage.content5)
+  return has_content5()
+      ? *content_.content5_
+      : *reinterpret_cast< ::LoginMessage::Email_Repeat_Chexk*>(&::LoginMessage::_Email_Repeat_Chexk_default_instance_);
+}
+inline ::LoginMessage::Email_Repeat_Chexk* MainMessage::mutable_content5() {
+  if (!has_content5()) {
+    clear_content();
+    set_has_content5();
+    content_.content5_ = CreateMaybeMessage< ::LoginMessage::Email_Repeat_Chexk >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:LoginMessage.MainMessage.content5)
+  return content_.content5_;
+}
+
+// .LoginMessage.Email_Repeat_Repost content6 = 7;
+inline bool MainMessage::has_content6() const {
+  return content_case() == kContent6;
+}
+inline void MainMessage::set_has_content6() {
+  _oneof_case_[0] = kContent6;
+}
+inline void MainMessage::clear_content6() {
+  if (has_content6()) {
+    delete content_.content6_;
+    clear_has_content();
+  }
+}
+inline const ::LoginMessage::Email_Repeat_Repost& MainMessage::_internal_content6() const {
+  return *content_.content6_;
+}
+inline ::LoginMessage::Email_Repeat_Repost* MainMessage::release_content6() {
+  // @@protoc_insertion_point(field_release:LoginMessage.MainMessage.content6)
+  if (has_content6()) {
+    clear_has_content();
+      ::LoginMessage::Email_Repeat_Repost* temp = content_.content6_;
+    content_.content6_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::LoginMessage::Email_Repeat_Repost& MainMessage::content6() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.MainMessage.content6)
+  return has_content6()
+      ? *content_.content6_
+      : *reinterpret_cast< ::LoginMessage::Email_Repeat_Repost*>(&::LoginMessage::_Email_Repeat_Repost_default_instance_);
+}
+inline ::LoginMessage::Email_Repeat_Repost* MainMessage::mutable_content6() {
+  if (!has_content6()) {
+    clear_content();
+    set_has_content6();
+    content_.content6_ = CreateMaybeMessage< ::LoginMessage::Email_Repeat_Repost >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:LoginMessage.MainMessage.content6)
+  return content_.content6_;
+}
+
 inline bool MainMessage::has_content() const {
   return content_case() != CONTENT_NOT_SET;
 }
@@ -716,6 +1686,14 @@ inline MainMessage::ContentCase MainMessage::content_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -77,6 +77,7 @@ void MessageManager::Push_msgData_IN(int clientFd,std::string msg)
     m_msgData_IN_Mutex.lock();
     msgData_IN.push_back(data);
     m_msgData_IN_Mutex.unlock();
+    cout<<"push a data in"<<endl;
 }
 
 void MessageManager::Push_msgData_Out(MessageData data)

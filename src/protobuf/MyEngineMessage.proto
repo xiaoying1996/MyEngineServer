@@ -3,8 +3,12 @@ package LoginMessage;
 
 enum MessageType
 {
-    NAME_REPEAT_CHECK  = 0; //检查用户名是否重复
+    NAME_REPEAT_CHECK  = 0;     //检查用户名是否重复
     NAME_REPEAT_REPOST = 1;     //回复用户名是否重复
+    NUMBER_REPEAT_CHECK = 2;    //检查手机号是否重复
+    NUMBER_REPEAT_REPOST = 3;   //回复手机号是否重复
+    EMAIL_REPEAT_CHECK = 4;     //检查邮箱是否重复
+    EMAIL_REPEAT_REPOST = 5;     //回复邮箱是否重复
 }
 
 message Name_Repeat_Check
@@ -18,6 +22,29 @@ message Name_Repeat_Repost
     bool state = 2;
 }
 
+message Number_Repeat_Chexk
+{
+    bytes number = 1;
+}
+
+message Number_Repeat_Repost
+{
+    bytes number = 1;
+    bool state = 2;
+}
+
+message Email_Repeat_Chexk
+{
+    bytes email = 1;
+}
+
+message Email_Repeat_Repost
+{
+    bytes email = 1;
+    bool state = 2;
+}
+
+
 message MainMessage
 {
     MessageType type = 1;
@@ -25,5 +52,9 @@ message MainMessage
     {
         Name_Repeat_Check content1 = 2;
         Name_Repeat_Repost content2 = 3;
+        Number_Repeat_Chexk content3 = 4;
+        Number_Repeat_Repost content4 = 5;
+        Email_Repeat_Chexk content5 = 6;
+        Email_Repeat_Repost content6 = 7;
     }
 };

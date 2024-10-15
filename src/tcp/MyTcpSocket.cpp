@@ -7,7 +7,7 @@ void *HandleOutMessage(void *)
 {
     while(1)
     {
-        if(MessageManager::GetInstance()->msgData_Out_NotEmpty()) {
+        while(MessageManager::GetInstance()->msgData_Out_NotEmpty()) {
             MessageData data = MessageManager::GetInstance()->Pop_msgData_OUT();
             send(data.clientFd, data.datas[0].c_str(), data.datas[0].length(), 0);
         }
@@ -185,7 +185,7 @@ void MyTcpSocket::SocketRunning()
                     {
                         // 通信
                         // 接收的数据打印到终端
-                        write(STDOUT_FILENO, buf, len);
+                        //write(STDOUT_FILENO, buf, len);
                         strcpy(strRecv,buf);
                         strRecv[len] = 0;
                         strRes += strRecv;
@@ -197,7 +197,7 @@ void MyTcpSocket::SocketRunning()
                         // len == -1
                         if(errno == EAGAIN)
                         {
-                            printf("数据读完了...\n");
+                            //printf("数据读完了...\n");
                             break;
                         }
                         else
