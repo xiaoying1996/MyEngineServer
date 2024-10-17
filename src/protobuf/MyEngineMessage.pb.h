@@ -39,7 +39,7 @@ namespace protobuf_MyEngineMessage_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[7];
+  static const ::google::protobuf::internal::ParseTable schema[9];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -68,6 +68,12 @@ extern Number_Repeat_ChexkDefaultTypeInternal _Number_Repeat_Chexk_default_insta
 class Number_Repeat_Repost;
 class Number_Repeat_RepostDefaultTypeInternal;
 extern Number_Repeat_RepostDefaultTypeInternal _Number_Repeat_Repost_default_instance_;
+class Register_Repost;
+class Register_RepostDefaultTypeInternal;
+extern Register_RepostDefaultTypeInternal _Register_Repost_default_instance_;
+class Register_Request;
+class Register_RequestDefaultTypeInternal;
+extern Register_RequestDefaultTypeInternal _Register_Request_default_instance_;
 }  // namespace LoginMessage
 namespace google {
 namespace protobuf {
@@ -78,6 +84,8 @@ template<> ::LoginMessage::Name_Repeat_Check* Arena::CreateMaybeMessage<::LoginM
 template<> ::LoginMessage::Name_Repeat_Repost* Arena::CreateMaybeMessage<::LoginMessage::Name_Repeat_Repost>(Arena*);
 template<> ::LoginMessage::Number_Repeat_Chexk* Arena::CreateMaybeMessage<::LoginMessage::Number_Repeat_Chexk>(Arena*);
 template<> ::LoginMessage::Number_Repeat_Repost* Arena::CreateMaybeMessage<::LoginMessage::Number_Repeat_Repost>(Arena*);
+template<> ::LoginMessage::Register_Repost* Arena::CreateMaybeMessage<::LoginMessage::Register_Repost>(Arena*);
+template<> ::LoginMessage::Register_Request* Arena::CreateMaybeMessage<::LoginMessage::Register_Request>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace LoginMessage {
@@ -89,12 +97,14 @@ enum MessageType {
   NUMBER_REPEAT_REPOST = 3,
   EMAIL_REPEAT_CHECK = 4,
   EMAIL_REPEAT_REPOST = 5,
+  REGISTER_REQUEST = 6,
+  REGISTER_REPOST = 7,
   MessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   MessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool MessageType_IsValid(int value);
 const MessageType MessageType_MIN = NAME_REPEAT_CHECK;
-const MessageType MessageType_MAX = EMAIL_REPEAT_REPOST;
+const MessageType MessageType_MAX = REGISTER_REPOST;
 const int MessageType_ARRAYSIZE = MessageType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* MessageType_descriptor();
@@ -796,6 +806,280 @@ class Email_Repeat_Repost : public ::google::protobuf::Message /* @@protoc_inser
 };
 // -------------------------------------------------------------------
 
+class Register_Request : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LoginMessage.Register_Request) */ {
+ public:
+  Register_Request();
+  virtual ~Register_Request();
+
+  Register_Request(const Register_Request& from);
+
+  inline Register_Request& operator=(const Register_Request& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Register_Request(Register_Request&& from) noexcept
+    : Register_Request() {
+    *this = ::std::move(from);
+  }
+
+  inline Register_Request& operator=(Register_Request&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Register_Request& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Register_Request* internal_default_instance() {
+    return reinterpret_cast<const Register_Request*>(
+               &_Register_Request_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  void Swap(Register_Request* other);
+  friend void swap(Register_Request& a, Register_Request& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Register_Request* New() const final {
+    return CreateMaybeMessage<Register_Request>(NULL);
+  }
+
+  Register_Request* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Register_Request>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Register_Request& from);
+  void MergeFrom(const Register_Request& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Register_Request* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes name = 1;
+  void clear_name();
+  static const int kNameFieldNumber = 1;
+  const ::std::string& name() const;
+  void set_name(const ::std::string& value);
+  #if LANG_CXX11
+  void set_name(::std::string&& value);
+  #endif
+  void set_name(const char* value);
+  void set_name(const void* value, size_t size);
+  ::std::string* mutable_name();
+  ::std::string* release_name();
+  void set_allocated_name(::std::string* name);
+
+  // bytes number = 2;
+  void clear_number();
+  static const int kNumberFieldNumber = 2;
+  const ::std::string& number() const;
+  void set_number(const ::std::string& value);
+  #if LANG_CXX11
+  void set_number(::std::string&& value);
+  #endif
+  void set_number(const char* value);
+  void set_number(const void* value, size_t size);
+  ::std::string* mutable_number();
+  ::std::string* release_number();
+  void set_allocated_number(::std::string* number);
+
+  // bytes email = 3;
+  void clear_email();
+  static const int kEmailFieldNumber = 3;
+  const ::std::string& email() const;
+  void set_email(const ::std::string& value);
+  #if LANG_CXX11
+  void set_email(::std::string&& value);
+  #endif
+  void set_email(const char* value);
+  void set_email(const void* value, size_t size);
+  ::std::string* mutable_email();
+  ::std::string* release_email();
+  void set_allocated_email(::std::string* email);
+
+  // bytes password = 4;
+  void clear_password();
+  static const int kPasswordFieldNumber = 4;
+  const ::std::string& password() const;
+  void set_password(const ::std::string& value);
+  #if LANG_CXX11
+  void set_password(::std::string&& value);
+  #endif
+  void set_password(const char* value);
+  void set_password(const void* value, size_t size);
+  ::std::string* mutable_password();
+  ::std::string* release_password();
+  void set_allocated_password(::std::string* password);
+
+  // @@protoc_insertion_point(class_scope:LoginMessage.Register_Request)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr name_;
+  ::google::protobuf::internal::ArenaStringPtr number_;
+  ::google::protobuf::internal::ArenaStringPtr email_;
+  ::google::protobuf::internal::ArenaStringPtr password_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_MyEngineMessage_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class Register_Repost : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LoginMessage.Register_Repost) */ {
+ public:
+  Register_Repost();
+  virtual ~Register_Repost();
+
+  Register_Repost(const Register_Repost& from);
+
+  inline Register_Repost& operator=(const Register_Repost& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Register_Repost(Register_Repost&& from) noexcept
+    : Register_Repost() {
+    *this = ::std::move(from);
+  }
+
+  inline Register_Repost& operator=(Register_Repost&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Register_Repost& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Register_Repost* internal_default_instance() {
+    return reinterpret_cast<const Register_Repost*>(
+               &_Register_Repost_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  void Swap(Register_Repost* other);
+  friend void swap(Register_Repost& a, Register_Repost& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Register_Repost* New() const final {
+    return CreateMaybeMessage<Register_Repost>(NULL);
+  }
+
+  Register_Repost* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Register_Repost>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Register_Repost& from);
+  void MergeFrom(const Register_Repost& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Register_Repost* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // bytes name = 1;
+  void clear_name();
+  static const int kNameFieldNumber = 1;
+  const ::std::string& name() const;
+  void set_name(const ::std::string& value);
+  #if LANG_CXX11
+  void set_name(::std::string&& value);
+  #endif
+  void set_name(const char* value);
+  void set_name(const void* value, size_t size);
+  ::std::string* mutable_name();
+  ::std::string* release_name();
+  void set_allocated_name(::std::string* name);
+
+  // bool state = 2;
+  void clear_state();
+  static const int kStateFieldNumber = 2;
+  bool state() const;
+  void set_state(bool value);
+
+  // @@protoc_insertion_point(class_scope:LoginMessage.Register_Repost)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr name_;
+  bool state_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_MyEngineMessage_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class MainMessage : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LoginMessage.MainMessage) */ {
  public:
   MainMessage();
@@ -832,6 +1116,8 @@ class MainMessage : public ::google::protobuf::Message /* @@protoc_insertion_poi
     kContent4 = 5,
     kContent5 = 6,
     kContent6 = 7,
+    kContent7 = 8,
+    kContent8 = 9,
     CONTENT_NOT_SET = 0,
   };
 
@@ -841,7 +1127,7 @@ class MainMessage : public ::google::protobuf::Message /* @@protoc_insertion_poi
                &_MainMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   void Swap(MainMessage* other);
   friend void swap(MainMessage& a, MainMessage& b) {
@@ -971,6 +1257,30 @@ class MainMessage : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::LoginMessage::Email_Repeat_Repost* mutable_content6();
   void set_allocated_content6(::LoginMessage::Email_Repeat_Repost* content6);
 
+  // .LoginMessage.Register_Request content7 = 8;
+  bool has_content7() const;
+  void clear_content7();
+  static const int kContent7FieldNumber = 8;
+  private:
+  const ::LoginMessage::Register_Request& _internal_content7() const;
+  public:
+  const ::LoginMessage::Register_Request& content7() const;
+  ::LoginMessage::Register_Request* release_content7();
+  ::LoginMessage::Register_Request* mutable_content7();
+  void set_allocated_content7(::LoginMessage::Register_Request* content7);
+
+  // .LoginMessage.Register_Repost content8 = 9;
+  bool has_content8() const;
+  void clear_content8();
+  static const int kContent8FieldNumber = 9;
+  private:
+  const ::LoginMessage::Register_Repost& _internal_content8() const;
+  public:
+  const ::LoginMessage::Register_Repost& content8() const;
+  ::LoginMessage::Register_Repost* release_content8();
+  ::LoginMessage::Register_Repost* mutable_content8();
+  void set_allocated_content8(::LoginMessage::Register_Repost* content8);
+
   void clear_content();
   ContentCase content_case() const;
   // @@protoc_insertion_point(class_scope:LoginMessage.MainMessage)
@@ -981,6 +1291,8 @@ class MainMessage : public ::google::protobuf::Message /* @@protoc_insertion_poi
   void set_has_content4();
   void set_has_content5();
   void set_has_content6();
+  void set_has_content7();
+  void set_has_content8();
 
   inline bool has_content() const;
   inline void clear_has_content();
@@ -995,6 +1307,8 @@ class MainMessage : public ::google::protobuf::Message /* @@protoc_insertion_poi
     ::LoginMessage::Number_Repeat_Repost* content4_;
     ::LoginMessage::Email_Repeat_Chexk* content5_;
     ::LoginMessage::Email_Repeat_Repost* content6_;
+    ::LoginMessage::Register_Request* content7_;
+    ::LoginMessage::Register_Repost* content8_;
   } content_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -1394,6 +1708,293 @@ inline void Email_Repeat_Repost::set_state(bool value) {
 
 // -------------------------------------------------------------------
 
+// Register_Request
+
+// bytes name = 1;
+inline void Register_Request::clear_name() {
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Register_Request::name() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Register_Request.name)
+  return name_.GetNoArena();
+}
+inline void Register_Request::set_name(const ::std::string& value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LoginMessage.Register_Request.name)
+}
+#if LANG_CXX11
+inline void Register_Request::set_name(::std::string&& value) {
+  
+  name_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LoginMessage.Register_Request.name)
+}
+#endif
+inline void Register_Request::set_name(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LoginMessage.Register_Request.name)
+}
+inline void Register_Request::set_name(const void* value, size_t size) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LoginMessage.Register_Request.name)
+}
+inline ::std::string* Register_Request::mutable_name() {
+  
+  // @@protoc_insertion_point(field_mutable:LoginMessage.Register_Request.name)
+  return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Register_Request::release_name() {
+  // @@protoc_insertion_point(field_release:LoginMessage.Register_Request.name)
+  
+  return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Register_Request::set_allocated_name(::std::string* name) {
+  if (name != NULL) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:LoginMessage.Register_Request.name)
+}
+
+// bytes number = 2;
+inline void Register_Request::clear_number() {
+  number_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Register_Request::number() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Register_Request.number)
+  return number_.GetNoArena();
+}
+inline void Register_Request::set_number(const ::std::string& value) {
+  
+  number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LoginMessage.Register_Request.number)
+}
+#if LANG_CXX11
+inline void Register_Request::set_number(::std::string&& value) {
+  
+  number_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LoginMessage.Register_Request.number)
+}
+#endif
+inline void Register_Request::set_number(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LoginMessage.Register_Request.number)
+}
+inline void Register_Request::set_number(const void* value, size_t size) {
+  
+  number_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LoginMessage.Register_Request.number)
+}
+inline ::std::string* Register_Request::mutable_number() {
+  
+  // @@protoc_insertion_point(field_mutable:LoginMessage.Register_Request.number)
+  return number_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Register_Request::release_number() {
+  // @@protoc_insertion_point(field_release:LoginMessage.Register_Request.number)
+  
+  return number_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Register_Request::set_allocated_number(::std::string* number) {
+  if (number != NULL) {
+    
+  } else {
+    
+  }
+  number_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), number);
+  // @@protoc_insertion_point(field_set_allocated:LoginMessage.Register_Request.number)
+}
+
+// bytes email = 3;
+inline void Register_Request::clear_email() {
+  email_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Register_Request::email() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Register_Request.email)
+  return email_.GetNoArena();
+}
+inline void Register_Request::set_email(const ::std::string& value) {
+  
+  email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LoginMessage.Register_Request.email)
+}
+#if LANG_CXX11
+inline void Register_Request::set_email(::std::string&& value) {
+  
+  email_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LoginMessage.Register_Request.email)
+}
+#endif
+inline void Register_Request::set_email(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LoginMessage.Register_Request.email)
+}
+inline void Register_Request::set_email(const void* value, size_t size) {
+  
+  email_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LoginMessage.Register_Request.email)
+}
+inline ::std::string* Register_Request::mutable_email() {
+  
+  // @@protoc_insertion_point(field_mutable:LoginMessage.Register_Request.email)
+  return email_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Register_Request::release_email() {
+  // @@protoc_insertion_point(field_release:LoginMessage.Register_Request.email)
+  
+  return email_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Register_Request::set_allocated_email(::std::string* email) {
+  if (email != NULL) {
+    
+  } else {
+    
+  }
+  email_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), email);
+  // @@protoc_insertion_point(field_set_allocated:LoginMessage.Register_Request.email)
+}
+
+// bytes password = 4;
+inline void Register_Request::clear_password() {
+  password_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Register_Request::password() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Register_Request.password)
+  return password_.GetNoArena();
+}
+inline void Register_Request::set_password(const ::std::string& value) {
+  
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LoginMessage.Register_Request.password)
+}
+#if LANG_CXX11
+inline void Register_Request::set_password(::std::string&& value) {
+  
+  password_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LoginMessage.Register_Request.password)
+}
+#endif
+inline void Register_Request::set_password(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LoginMessage.Register_Request.password)
+}
+inline void Register_Request::set_password(const void* value, size_t size) {
+  
+  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LoginMessage.Register_Request.password)
+}
+inline ::std::string* Register_Request::mutable_password() {
+  
+  // @@protoc_insertion_point(field_mutable:LoginMessage.Register_Request.password)
+  return password_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Register_Request::release_password() {
+  // @@protoc_insertion_point(field_release:LoginMessage.Register_Request.password)
+  
+  return password_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Register_Request::set_allocated_password(::std::string* password) {
+  if (password != NULL) {
+    
+  } else {
+    
+  }
+  password_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), password);
+  // @@protoc_insertion_point(field_set_allocated:LoginMessage.Register_Request.password)
+}
+
+// -------------------------------------------------------------------
+
+// Register_Repost
+
+// bytes name = 1;
+inline void Register_Repost::clear_name() {
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Register_Repost::name() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Register_Repost.name)
+  return name_.GetNoArena();
+}
+inline void Register_Repost::set_name(const ::std::string& value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LoginMessage.Register_Repost.name)
+}
+#if LANG_CXX11
+inline void Register_Repost::set_name(::std::string&& value) {
+  
+  name_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:LoginMessage.Register_Repost.name)
+}
+#endif
+inline void Register_Repost::set_name(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LoginMessage.Register_Repost.name)
+}
+inline void Register_Repost::set_name(const void* value, size_t size) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LoginMessage.Register_Repost.name)
+}
+inline ::std::string* Register_Repost::mutable_name() {
+  
+  // @@protoc_insertion_point(field_mutable:LoginMessage.Register_Repost.name)
+  return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Register_Repost::release_name() {
+  // @@protoc_insertion_point(field_release:LoginMessage.Register_Repost.name)
+  
+  return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Register_Repost::set_allocated_name(::std::string* name) {
+  if (name != NULL) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:LoginMessage.Register_Repost.name)
+}
+
+// bool state = 2;
+inline void Register_Repost::clear_state() {
+  state_ = false;
+}
+inline bool Register_Repost::state() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.Register_Repost.state)
+  return state_;
+}
+inline void Register_Repost::set_state(bool value) {
+  
+  state_ = value;
+  // @@protoc_insertion_point(field_set:LoginMessage.Register_Repost.state)
+}
+
+// -------------------------------------------------------------------
+
 // MainMessage
 
 // .LoginMessage.MessageType type = 1;
@@ -1674,6 +2275,94 @@ inline ::LoginMessage::Email_Repeat_Repost* MainMessage::mutable_content6() {
   return content_.content6_;
 }
 
+// .LoginMessage.Register_Request content7 = 8;
+inline bool MainMessage::has_content7() const {
+  return content_case() == kContent7;
+}
+inline void MainMessage::set_has_content7() {
+  _oneof_case_[0] = kContent7;
+}
+inline void MainMessage::clear_content7() {
+  if (has_content7()) {
+    delete content_.content7_;
+    clear_has_content();
+  }
+}
+inline const ::LoginMessage::Register_Request& MainMessage::_internal_content7() const {
+  return *content_.content7_;
+}
+inline ::LoginMessage::Register_Request* MainMessage::release_content7() {
+  // @@protoc_insertion_point(field_release:LoginMessage.MainMessage.content7)
+  if (has_content7()) {
+    clear_has_content();
+      ::LoginMessage::Register_Request* temp = content_.content7_;
+    content_.content7_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::LoginMessage::Register_Request& MainMessage::content7() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.MainMessage.content7)
+  return has_content7()
+      ? *content_.content7_
+      : *reinterpret_cast< ::LoginMessage::Register_Request*>(&::LoginMessage::_Register_Request_default_instance_);
+}
+inline ::LoginMessage::Register_Request* MainMessage::mutable_content7() {
+  if (!has_content7()) {
+    clear_content();
+    set_has_content7();
+    content_.content7_ = CreateMaybeMessage< ::LoginMessage::Register_Request >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:LoginMessage.MainMessage.content7)
+  return content_.content7_;
+}
+
+// .LoginMessage.Register_Repost content8 = 9;
+inline bool MainMessage::has_content8() const {
+  return content_case() == kContent8;
+}
+inline void MainMessage::set_has_content8() {
+  _oneof_case_[0] = kContent8;
+}
+inline void MainMessage::clear_content8() {
+  if (has_content8()) {
+    delete content_.content8_;
+    clear_has_content();
+  }
+}
+inline const ::LoginMessage::Register_Repost& MainMessage::_internal_content8() const {
+  return *content_.content8_;
+}
+inline ::LoginMessage::Register_Repost* MainMessage::release_content8() {
+  // @@protoc_insertion_point(field_release:LoginMessage.MainMessage.content8)
+  if (has_content8()) {
+    clear_has_content();
+      ::LoginMessage::Register_Repost* temp = content_.content8_;
+    content_.content8_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline const ::LoginMessage::Register_Repost& MainMessage::content8() const {
+  // @@protoc_insertion_point(field_get:LoginMessage.MainMessage.content8)
+  return has_content8()
+      ? *content_.content8_
+      : *reinterpret_cast< ::LoginMessage::Register_Repost*>(&::LoginMessage::_Register_Repost_default_instance_);
+}
+inline ::LoginMessage::Register_Repost* MainMessage::mutable_content8() {
+  if (!has_content8()) {
+    clear_content();
+    set_has_content8();
+    content_.content8_ = CreateMaybeMessage< ::LoginMessage::Register_Repost >(
+        GetArenaNoVirtual());
+  }
+  // @@protoc_insertion_point(field_mutable:LoginMessage.MainMessage.content8)
+  return content_.content8_;
+}
+
 inline bool MainMessage::has_content() const {
   return content_case() != CONTENT_NOT_SET;
 }
@@ -1686,6 +2375,10 @@ inline MainMessage::ContentCase MainMessage::content_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

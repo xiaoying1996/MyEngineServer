@@ -9,6 +9,8 @@ enum MessageType
     NUMBER_REPEAT_REPOST = 3;   //回复手机号是否重复
     EMAIL_REPEAT_CHECK = 4;     //检查邮箱是否重复
     EMAIL_REPEAT_REPOST = 5;     //回复邮箱是否重复
+    REGISTER_REQUEST = 6;       //注册请求
+    REGISTER_REPOST = 7;        //注册请求反馈
 }
 
 message Name_Repeat_Check
@@ -44,6 +46,19 @@ message Email_Repeat_Repost
     bool state = 2;
 }
 
+message Register_Request
+{
+    bytes name = 1;
+    bytes number = 2;
+    bytes email = 3;
+    bytes password = 4;
+}
+
+message Register_Repost
+{
+    bytes name = 1;
+    bool state = 2;
+}
 
 message MainMessage
 {
@@ -56,5 +71,7 @@ message MainMessage
         Number_Repeat_Repost content4 = 5;
         Email_Repeat_Chexk content5 = 6;
         Email_Repeat_Repost content6 = 7;
+        Register_Request content7 = 8;
+        Register_Repost content8 = 9;
     }
 };

@@ -106,7 +106,7 @@ void HandleMessage::ProcessProtoData(MessageData data)
             data_Ret.datas.push_back(msgStr);
             MessageManager::GetInstance()->Push_msgData_Out(data_Ret);
         }
-        else if(protoMsg.type() == MessageType::EMAIL_REPEAT_CHECK)//检查手机号是否重复
+        else if(protoMsg.type() == MessageType::EMAIL_REPEAT_CHECK)//检查邮箱是否重复
         {
             bool ret;
             Email_Repeat_Chexk content = protoMsg.content5();
@@ -123,6 +123,52 @@ void HandleMessage::ProcessProtoData(MessageData data)
             std::string msgStr;
             m.SerializeToString(&msgStr);
             m.clear_content4();
+            m.Clear();
+            data_Ret.datas.push_back(msgStr);
+            MessageManager::GetInstance()->Push_msgData_Out(data_Ret);
+        }
+        else if(protoMsg.type() == MessageType::REGISTER_REQUEST)//用户注册
+        {
+            Register_Request content = protoMsg.content7();
+            string name = content.name();
+            string number = content.number();
+            string email = content.email();
+            string password = content.password();
+            bool ret;
+            CheckNameRepeat(name,ret);
+            if(!ret)
+            {
+                CheckNumberRepeat(number,ret);
+            }
+            if(!ret)
+            {
+                CheckEmailRepeat(email,ret);
+            }
+            if(!ret)
+            {
+                //注册操作
+                vector<string> keys = {"user_name","phone_number","email","password"};
+                vector<string> values;
+                values.push_back(name);
+                values.push_back(number);
+                values.push_back(email);
+                values.push_back(password);
+                MyMysql::GetInstance()->MyMysql::InsertData("user",keys, values);
+                //注册完成之后检查是否在数据库中添加成功
+                CheckNameRepeat(name,ret);
+
+            }
+            MessageData data_Ret;
+            data_Ret.clientFd = data.clientFd;
+            MainMessage m;
+            Register_Repost *message = new Register_Repost();
+            m.set_type(MessageType::REGISTER_REPOST);
+            message->set_name(name);
+            message->set_state(ret);
+            m.set_allocated_content8(message);
+            std::string msgStr;
+            m.SerializeToString(&msgStr);
+            m.clear_content8();
             m.Clear();
             data_Ret.datas.push_back(msgStr);
             MessageManager::GetInstance()->Push_msgData_Out(data_Ret);
